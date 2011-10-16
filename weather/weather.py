@@ -65,7 +65,7 @@ class Client(object):
     def request(self,features=[], location=''):
 
         feature_string = "/".join(features)
-        uri = '%s/%s/%s/q/%s.' % (URL, self.key, feature_string, location)
+        uri = '%s/%s/%s/q/%s.json' % (URL, self.key, feature_string, location)
 
         response = urllib2.urlopen(uri,timeout=self.timeout)
         data = response.read()
