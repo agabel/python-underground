@@ -67,6 +67,10 @@ class Client(object):
         return self.request(features, location)
 
 
+    def get_features_by_zipcode(self, zipcode, features=[]):
+        return self.request(features, zipcode)
+
+    
     def request(self,features=[], location=''):
 
         feature_string = "/".join(features)
