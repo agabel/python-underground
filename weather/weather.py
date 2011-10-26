@@ -70,12 +70,16 @@ class Client(object):
     def get_features_by_zipcode(self, zipcode, features=[]):
         return self.request(features, zipcode)
 
-    
+
     def get_features_by_coordinates(self, lat, lng, features=[]):
         location = "%f/%f" % (lat, lng)
         return self.request(features, location=location)
 
 
+    def get_features_by_ip(self, ip, features=[]):
+        return self.request(features, location=ip)
+
+    
     def request(self,features=[], location=''):
 
         feature_string = "/".join(features)
