@@ -61,6 +61,11 @@ class Client(object):
         self.api_version = api_version
         self.timeout = timeout
 
+        
+    def get_features_by_city(self, city, state, features=[]):
+        location = "%s/%s" % (state, city)
+        return self.request(features, location)
+
 
     def request(self,features=[], location=''):
 
