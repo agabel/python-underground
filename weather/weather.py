@@ -51,6 +51,7 @@ FEATURES = (
 
 class WeatherException(Exception): pass
 class WeatherInvalidFeature(WeatherException): pass
+class WeatherInvalidLocation(WeatherException): pass
 class WeatherServerException(WeatherException): pass
 
 
@@ -62,8 +63,13 @@ class Client(object):
         self.timeout = timeout
 
         
-    def get_features_by_city(self, city, state, features=[]):
-        location = "%s/%s" % (state, city)
+    def get_features_by_city(self, city, state=None, country=None, features=[]):
+        if country:
+            location = '%s/%s' % (country, state)
+        elif state:
+            location = "%s/%s" % (state, city)
+        else:
+            raise WeatherInvalidLocation
         return self.request(features, location)
 
 
